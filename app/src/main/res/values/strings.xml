@@ -2,4 +2,6 @@
     <string name="app_name">Recipes</string>
     <string name="home">home</string>
     <string name="ingredient_query">Which ingredient would you like to cook?</string>
+    <string name="home_title">Recipes</string>
+    <string name="detail_title">Details</string>
 </resources>
