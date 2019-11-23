@@ -9,9 +9,11 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.aruana.recipes.R
 import com.aruana.recipes.databinding.FragmentHomeBinding
+import com.aruana.recipes.detail.DetailFragment.Companion.DETAIL_TRANSITION_NAME
 import com.aruana.recipes.di.createHomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.recipe_item.view.*
@@ -40,9 +42,12 @@ class HomeFragment : Fragment() {
 
         viewModel.adapter.itemClickListener = { index, itemView ->
             viewModel.recipes.value?.get(index)?.let { selectedRecipe ->
-                itemView.recipeImage.transitionName = selectedRecipe.idMeal.toString()
+                itemView.recipeImage.transitionName = DETAIL_TRANSITION_NAME
+
+                val extras = FragmentNavigatorExtras(itemView.recipeImage to DETAIL_TRANSITION_NAME)
+
                 val action = HomeFragmentDirections.actionHomeDestToDetail(selectedRecipe.idMeal)
-                findNavController().navigate(action)
+                findNavController().navigate(action, extras)
             }
         }
 

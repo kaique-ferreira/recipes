@@ -30,6 +30,7 @@
                 tools:src="@color/colorPrimary" />
 
             <TextView
+                android:id="@+id/recipeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -6,9 +6,6 @@ import javax.inject.Inject
 
 class FindRecipeByIdImpl @Inject constructor(private val repository: RecipeRepository) : FindRecipeById() {
 
-    override fun addToCache(model: RecipeModel) {
-    }
-
     override fun createSingleUseCase(params: Params) = repository.findRecipeById(params.id).map { formatApiResult(it) }
 
     private fun formatApiResult(apiResult: List<RecipeModel>): RecipeModel {
@@ -40,8 +37,8 @@ class FindRecipeByIdImpl @Inject constructor(private val repository: RecipeRepos
         return recipe
     }
 
-    private fun createIngredientLine(measure: String, ingredient: String) =
-            if (ingredient.isNotEmpty()) {
+    private fun createIngredientLine(measure: String, ingredient: String?) =
+            if (!ingredient.isNullOrEmpty()) {
                 "\u2022 $measure $ingredient\n"
             } else {
                 ""

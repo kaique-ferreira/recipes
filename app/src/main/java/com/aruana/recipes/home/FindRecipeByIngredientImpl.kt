@@ -7,8 +7,5 @@ import javax.inject.Inject
 
 class FindRecipeByIngredientImpl @Inject constructor(private val repository: RecipeRepository) : FindRecipeByIngredient() {
 
-    override fun addToCache(model: List<RecipeModel>) {
-    }
-
     override fun createSingleUseCase(params: Params): Single<List<RecipeModel>> = repository.findRecipeByIngredient(params.ingredient)
 }

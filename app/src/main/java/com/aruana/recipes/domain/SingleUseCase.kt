@@ -7,10 +7,6 @@ import io.reactivex.schedulers.Schedulers
 
 interface SingleUseCase<T, in Params> {
 
-    fun shouldCacheResult() = false
-
-    fun addToCache(model: T)
-
     fun createSingleUseCase(params: Params): Single<T>
 
     fun invoke(onSuccess: ((t: T) -> Unit),
@@ -26,13 +22,7 @@ interface SingleUseCase<T, in Params> {
                 .subscribe { model -> handleSuccess(onSuccess, model) }
     }
 
-    fun handleSuccess(onSuccess: (t: T) -> Unit, result: T) {
-        if (shouldCacheResult()) {
-            addToCache(result)
-        }
-
-        onSuccess.invoke(result)
-    }
+    fun handleSuccess(onSuccess: (t: T) -> Unit, result: T) = onSuccess.invoke(result)
 
     var disposable: Disposable?
 
