@@ -15,10 +15,10 @@ class DetailViewModel @Inject constructor(private val findRecipeById: FindRecipe
 
     override fun onCleared() = findRecipeById.dispose()
 
-    fun getRecipeData(recipeId: Int) = findRecipeById.invoke({ _recipe.value = it },
-            { Log.e(TAG, it.message) },
-            { Log.d(TAG, "finished") },
-            FindRecipeById.Params(recipeId))
+    fun getRecipeData(recipeId: Int) = findRecipeById.invoke(
+            onSuccess = { _recipe.value = it },
+            onError = { Log.e(TAG, it.message ?: "") },
+            params = FindRecipeById.Params(recipeId))
 
     companion object {
         private const val TAG = "DetailViewModel"

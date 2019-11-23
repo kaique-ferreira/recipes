@@ -10,7 +10,7 @@ interface SingleUseCase<T, in Params> {
     fun createSingleUseCase(params: Params): Single<T>
 
     fun invoke(onSuccess: ((t: T) -> Unit),
-               onError: ((t: Throwable) -> Unit),
+               onError: ((t: Throwable) -> Unit) = {},
                onFinished: () -> Unit = {},
                params: Params) {
         dispose()

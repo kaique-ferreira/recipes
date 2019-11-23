@@ -32,16 +32,16 @@ class HomeViewModel @Inject constructor(private val findRecipeByIngredient: Find
         }
 
         findRecipeByIngredient.invoke(
-                { _recipes.value = it },
-                { Log.e(TAG, it.message) },
-                { Log.d(TAG, "finished") },
-                FindRecipeByIngredient.Params(ingredient))
+                onSuccess = { _recipes.value = it },
+                onError = { Log.e(TAG, it.message ?: "") },
+                params = FindRecipeByIngredient.Params(ingredient))
     }
 
     fun findAllIngredients() {
-        findAllIngredients.invoke({
-            _ingredients.value = it
-        }, {}, {}, FindAllIngredients.Params())
+        findAllIngredients.invoke(
+                onSuccess = { _ingredients.value = it },
+                onError = { Log.e(TAG, it.message ?: "") },
+                params = FindAllIngredients.Params())
     }
 
     companion object {

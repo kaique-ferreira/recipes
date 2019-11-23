@@ -25,7 +25,7 @@ class DetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-            duration = 200
+            duration = TRANSITION_DURATION
         }
     }
 
@@ -54,5 +54,6 @@ class DetailFragment : Fragment() {
 
     companion object {
         const val DETAIL_TRANSITION_NAME = "detail_transition"
+        const val TRANSITION_DURATION = 200L
     }
 }

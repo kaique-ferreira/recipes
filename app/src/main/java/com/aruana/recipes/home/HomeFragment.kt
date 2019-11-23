@@ -41,14 +41,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.adapter.itemClickListener = { index, itemView ->
-            viewModel.recipes.value?.get(index)?.let { selectedRecipe ->
-                itemView.recipeImage.transitionName = DETAIL_TRANSITION_NAME
-
-                val extras = FragmentNavigatorExtras(itemView.recipeImage to DETAIL_TRANSITION_NAME)
-
-                val action = HomeFragmentDirections.actionHomeDestToDetail(selectedRecipe.idMeal)
-                findNavController().navigate(action, extras)
-            }
+            tryToNavigateToRecipeDetail(index, itemView)
         }
 
         viewModel.recipes.observe(this, Observer {
@@ -61,5 +54,16 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.findAllIngredients()
+    }
+
+    private fun tryToNavigateToRecipeDetail(index: Int, itemView: View) {
+        viewModel.recipes.value?.get(index)?.let { selectedRecipe ->
+            itemView.recipeImage.transitionName = DETAIL_TRANSITION_NAME
+
+            val extras = FragmentNavigatorExtras(itemView.recipeImage to DETAIL_TRANSITION_NAME)
+
+            val action = HomeFragmentDirections.actionHomeDestToDetail(selectedRecipe.idMeal)
+            findNavController().navigate(action, extras)
+        }
     }
 }
