@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.aruana.recipes.detail.DetailViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/largeImageHeight"
+                android:scaleType="fitXY"
+                app:imageUrl="@{viewModel.recipe.strMealThumb}"
+                tools:src="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_margin"
+                android:text="@{viewModel.recipe.strMeal}"
+                android:textSize="@dimen/headerTextSize"
+                android:textStyle="bold"
+                tools:text="Recipe title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:text="@{viewModel.recipe.ingredientListFormatted}"
+                tools:text="Ingredients list" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_marginRight="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:text="@{viewModel.recipe.strInstructions}"
+                tools:text="Instructions" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

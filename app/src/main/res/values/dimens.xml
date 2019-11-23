@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="thumbDefaultSize">100dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="largeImageHeight">200dp</dimen>
+    <dimen name="headerTextSize">40sp</dimen>
+    <dimen name="card_text_size">20sp</dimen>
+</resources>
