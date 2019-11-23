@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -45,6 +47,9 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.recipes.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                closeSoftKeyboard(view)
+            }
             viewModel.adapter.submitList(it)
         })
 
@@ -54,6 +59,15 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.findAllIngredients()
+
+        editTextIngredientQuery.setOnClickListener {
+            (it as AutoCompleteTextView).text.clear()
+        }
+    }
+
+    private fun closeSoftKeyboard(view: View) {
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun tryToNavigateToRecipeDetail(index: Int, itemView: View) {
