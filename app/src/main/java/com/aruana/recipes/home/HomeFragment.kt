@@ -42,10 +42,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpClickListeners()
+
+        setUpViewModelObservers(view)
+
+        viewModel.initializeAutoCompleteList()
+    }
+
+    private fun setUpClickListeners() {
         viewModel.adapter.itemClickListener = { index, itemView ->
             tryToNavigateToRecipeDetail(index, itemView)
         }
 
+        editTextIngredientQuery.setOnClickListener {
+            (it as AutoCompleteTextView).text.clear()
+        }
+    }
+
+    private fun setUpViewModelObservers(view: View) {
         viewModel.recipes.observe(this, Observer {
             if (it.isNotEmpty()) {
                 closeSoftKeyboard(view)
@@ -57,12 +71,6 @@ class HomeFragment : Fragment() {
             val adapter = ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, ingredientList.map { it.strIngredient }.toTypedArray())
             editTextIngredientQuery.setAdapter(adapter)
         })
-
-        viewModel.findAllIngredients()
-
-        editTextIngredientQuery.setOnClickListener {
-            (it as AutoCompleteTextView).text.clear()
-        }
     }
 
     private fun closeSoftKeyboard(view: View) {

@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/recipeImage"
-                android:layout_width="@dimen/thumbDefaultSize"
-                android:layout_height="@dimen/thumbDefaultSize"
+                android:layout_width="@dimen/thumb_default_size"
+                android:layout_height="@dimen/thumb_default_size"
                 android:scaleType="fitCenter"
                 app:imageUrl="@{item.strMealThumb}"
                 tools:src="@color/colorPrimary" />

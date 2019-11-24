@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(private val findRecipeByIngredient: Find
                 params = FindRecipeByIngredient.Params(ingredient))
     }
 
-    fun findAllIngredients() {
+    fun initializeAutoCompleteList() {
         findAllIngredients.invoke(
                 onSuccess = { _ingredients.value = it },
                 onError = { Log.e(TAG, it.message ?: "") },
