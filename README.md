@@ -10,3 +10,7 @@ Also, took inspiration from google's plaid app and architecture samples
 https://github.com/android/plaid
 
 https://github.com/android/architecture-samples
+
+ ![Alt text](home.png?raw=true "home")
+ 
+ ![Alt text](detail.png?raw=true "detail")
